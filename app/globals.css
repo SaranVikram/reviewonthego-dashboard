@@ -10,13 +10,13 @@
   outline: none;
   box-sizing: border-box;
 }
-input {
+/* input {
   border: 1px solid #e0dfe7;
 }
 
 input:focus {
   border: 1px solid #80caee;
-}
+} */
 .arrow.down:after {
   content: "▼";
   font-size: 10px;
