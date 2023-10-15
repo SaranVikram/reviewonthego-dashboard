@@ -5,8 +5,8 @@ import api from "@/utils/api"
 
 // Define the shape of your state
 interface CheckinDetail {
-  name: string
-  mobile: string
+  customerName: string
+  phoneNumber: string
   isMsgOpen: boolean
 }
 
@@ -16,9 +16,14 @@ interface FeedbackDetail {
   feedback: string
 }
 
-interface CheckinFeedbackState {
+interface CheckinState {
   total: number
-  details: CheckinDetail[] | FeedbackDetail[]
+  details: CheckinDetail[]
+}
+
+interface FeedbackState {
+  total: number
+  details: FeedbackDetail[]
 }
 
 interface CustomerData {
@@ -42,14 +47,14 @@ interface DashboardState {
   customerData: null | CustomerData // Replace 'any' with the shape of your customer data
   pageVisits: PageVisits
   customerCheckins: {
-    today: CheckinFeedbackState
-    thisWeek: CheckinFeedbackState
-    thisMonth: CheckinFeedbackState
+    today: CheckinState
+    thisWeek: CheckinState
+    thisMonth: CheckinState
   }
   privateFeedback: {
-    today: CheckinFeedbackState
-    thisWeek: CheckinFeedbackState
-    thisMonth: CheckinFeedbackState
+    today: FeedbackState
+    thisWeek: FeedbackState
+    thisMonth: FeedbackState
   }
 }
 
@@ -115,7 +120,7 @@ const dashboardReducer = (state: DashboardState, action: DashboardAction): Dashb
         customerCheckins: {
           ...state.customerCheckins,
           [action.payload.period]: {
-            total: action.payload.total, // Use total from action payload
+            total: action.payload.total,
             details: action.payload.details,
           },
         },
