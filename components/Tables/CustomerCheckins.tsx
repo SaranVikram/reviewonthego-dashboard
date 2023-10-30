@@ -64,7 +64,7 @@ const customerCheckins = () => {
                 </td>
 
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${CheckinDetail.isMsgOpen ? "text-success bg-success" : "text-danger bg-danger"}`}>{`${CheckinDetail.isMsgOpen ? "Clicked" : "Unclick"}`}</p>
+                  <p className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${CheckinDetail.isMsgOpen ? "text-success bg-success" : "text-danger bg-danger"}`}>{`${CheckinDetail.isMsgOpen ? "Open" : "Unopen"}`}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">

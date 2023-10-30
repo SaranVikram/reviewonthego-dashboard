@@ -11,9 +11,10 @@ interface CheckinDetail {
 }
 
 interface FeedbackDetail {
-  name: string
-  mobile: string
-  feedback: string
+  customerName: string
+  phoneNumber: string
+  reviewText: string
+  rating: number
 }
 
 interface CheckinState {
@@ -43,9 +44,20 @@ interface PageVisits {
   thisWeek: PageVisitDetails
   thisMonth: PageVisitDetails
 }
+
+interface PositiveCountDetails {
+  total: number
+}
+
+interface PositiveCounts {
+  today: PositiveCountDetails
+  thisWeek: PositiveCountDetails
+  thisMonth: PositiveCountDetails
+}
 interface DashboardState {
   customerData: null | CustomerData // Replace 'any' with the shape of your customer data
   pageVisits: PageVisits
+  positiveCounts: PositiveCounts
   customerCheckins: {
     today: CheckinState
     thisWeek: CheckinState
@@ -62,6 +74,7 @@ interface DashboardState {
 type DashboardAction =
   | { type: "SET_CUSTOMER_DATA"; payload: CustomerData } // Replace 'any' with the shape of your customer data
   | { type: "UPDATE_PAGE_VISITS"; payload: { period: string; total: number } }
+  | { type: "UPDATE_POSITIVE_COUNTS"; payload: { period: string; total: number } }
   | { type: "UPDATE_CHECKINS"; payload: { period: string; total: number; details: CheckinDetail[] } }
   | { type: "UPDATE_PRIVATE_FEEDBACK"; payload: { period: string; total: number; details: FeedbackDetail[] } }
   | { type: "UPDATE_WHATSAPP_LIMIT"; payload: number }
@@ -87,6 +100,11 @@ const initialState: DashboardState = {
       total: 0,
     },
   },
+  positiveCounts: {
+    today: { total: 0 },
+    thisWeek: { total: 0 },
+    thisMonth: { total: 0 },
+  },
   customerCheckins: {
     today: { total: 0, details: [] },
     thisWeek: { total: 0, details: [] },
@@ -109,6 +127,16 @@ const dashboardReducer = (state: DashboardState, action: DashboardAction): Dashb
         ...state,
         pageVisits: {
           ...state.pageVisits,
+          [action.payload.period]: {
+            total: action.payload.total,
+          },
+        },
+      }
+    case "UPDATE_POSITIVE_COUNTS":
+      return {
+        ...state,
+        positiveCounts: {
+          ...state.positiveCounts,
           [action.payload.period]: {
             total: action.payload.total,
           },

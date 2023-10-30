@@ -26,12 +26,13 @@ const ECommerce: React.FC = () => {
     try {
       const response = await api.get(`/client-stats?dateFilter=${dateFilter}`)
       if (response.status === 200) {
-        const { pageviewsCount, reviewsCount, checkinsCount } = response.data
+        const { pageviewsCount, reviewsCount, checkinsCount, positiveCountsTotal } = response.data
 
         // Dispatch actions to update the state
         dispatch({ type: "UPDATE_PAGE_VISITS", payload: { period: dateFilter, total: pageviewsCount } })
         dispatch({ type: "UPDATE_CHECKINS", payload: { period: dateFilter, total: checkinsCount, details: [] } }) // Replace details with actual data
         dispatch({ type: "UPDATE_PRIVATE_FEEDBACK", payload: { period: dateFilter, total: reviewsCount, details: [] } }) // Replace details with actual data
+        dispatch({ type: "UPDATE_POSITIVE_COUNTS", payload: { period: dateFilter, total: positiveCountsTotal } })
       } else {
         console.error("Failed to fetch stats:", response.status, response.statusText)
       }
@@ -79,7 +80,7 @@ const ECommerce: React.FC = () => {
               <polyline points="17 11 19 13 23 9"></polyline>
             </svg>
           </CardDataStats>
-          <CardDataStats title="Negative Feedbacks" total={state.privateFeedback[dateFilter as keyof typeof state.privateFeedback].total}>
+          <CardDataStats title="Negative Reviews Diverted" total={state.privateFeedback[dateFilter as keyof typeof state.privateFeedback].total}>
             <svg className="fill-primary dark:fill-white" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g>
                 {" "}
@@ -87,7 +88,7 @@ const ECommerce: React.FC = () => {
               </g>{" "}
             </svg>
           </CardDataStats>
-          <CardDataStats title="Positive Ratings on GMB" total={state.pageVisits[dateFilter as keyof typeof state.pageVisits].total}>
+          <CardDataStats title="Positive Ratings Promoted" total={state.positiveCounts[dateFilter as keyof typeof state.positiveCounts].total}>
             <svg className="fill-primary dark:fill-white" width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />{" "}
             </svg>
@@ -99,13 +100,13 @@ const ECommerce: React.FC = () => {
         <div className="col-span-12">
           <ChartFour />
         </div>
-        <ChartTwo />
+        {/* <ChartTwo />
         <ChartThree />
         <MapOne />
         <div className="col-span-12 xl:col-span-8">
           <TableOne />
         </div>
-        <ChatCard />
+        <ChatCard /> */}
       </div>
     </>
   )

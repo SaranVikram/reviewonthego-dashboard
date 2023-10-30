@@ -1,15 +1,13 @@
 "use client"
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
-import Image from "next/image"
 import { useDashboard } from "@/contexts/DashboardContext" // Import your custom hook
-
 import { Metadata } from "next"
+
 export const metadata: Metadata = {
-  title: "Settings Page | Next.js E-commerce Dashboard Template",
-  description: "This is Settings page for TailAdmin Next.js",
+  title: "Reviewonthego | Dashboard Analytics",
+  description: "Analytics of user interactions on the review page",
   // other metadata
 }
-
 const Settings = () => {
   const { state } = useDashboard() // Use your custom hook to get the state
   const customerData = state.customerData // Safely cast to the correct type
