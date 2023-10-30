@@ -1,17 +1,10 @@
 "use client"
-import { Metadata } from "next"
 import React, { useState, useEffect, useRef } from "react"
 import api from "@/utils/api"
 import FlagList from "@/components/Modals/FlagList"
 import { useUiContext } from "@/contexts/UiContext"
 import { useRouter } from "next/navigation"
 import axios from "axios"
-
-export const metadata: Metadata = {
-  title: "Login page | Reviewonthego",
-  description: "This is login page for reviewonthego dashboard",
-  // other metadata
-}
 
 const LoginPage: React.FC = () => {
   const router = useRouter()

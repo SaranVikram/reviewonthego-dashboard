@@ -3,7 +3,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Reviewonthego | Dashboard Analytics",
-  description: "Analytics of user interactions on the review page",
+  description: "Analytics of user interactions for your review page",
   // other metadata
 }
 

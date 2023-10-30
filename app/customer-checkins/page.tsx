@@ -1,6 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb"
 import CustomerCheckins from "@/components/Tables/CustomerCheckins"
-import PrivateFeedback from "@/components/Tables/PrivateFeedback"
 
 import { Metadata } from "next"
 export const metadata: Metadata = {
