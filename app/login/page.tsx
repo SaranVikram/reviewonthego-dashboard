@@ -4,6 +4,7 @@ import api from "@/utils/api"
 import FlagList from "@/components/Modals/FlagList"
 import { useUiContext } from "@/contexts/UiContext"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 import axios from "axios"
 
 const LoginPage: React.FC = () => {
@@ -179,7 +180,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="w-[450px] rounded-lg border border-formstrokedark py-[30px] px-[100px] bg-white">
       <div className="w-[170px] mt-5 mb-6 mx-auto block" style={{ height: "fit-content" }}>
-        <img src="/images/brand/brand-01.svg" alt="" title="" height="35" />
+        <Image src="/images/brand/brand-01.svg" alt="" title="" height="35" />
       </div>
       <h1 className="text-center text-black font-normal text-lg !leading-9 mb-5">Hello, who’s this?</h1>
       <form className="flex flex-col mx-auto my-0">

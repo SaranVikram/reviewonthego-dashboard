@@ -1,9 +1,5 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import ChartThree from "../Charts/ChartThree"
-import ChartTwo from "../Charts/ChartTwo"
-import ChatCard from "../Chat/ChatCard"
-import TableOne from "../Tables/TableOne"
 import CardDataStats from "../CardDataStats"
 import api from "@/utils/api"
 import { useDashboard } from "@/contexts/DashboardContext"
@@ -22,26 +18,26 @@ const ECommerce: React.FC = () => {
   const { state, dispatch } = useDashboard()
   const [dateFilter, setDateFilter] = useState("today") // default filter
 
-  const fetchStats = async () => {
-    try {
-      const response = await api.get(`/client-stats?dateFilter=${dateFilter}`)
-      if (response.status === 200) {
-        const { pageviewsCount, reviewsCount, checkinsCount, positiveCountsTotal } = response.data
-
-        // Dispatch actions to update the state
-        dispatch({ type: "UPDATE_PAGE_VISITS", payload: { period: dateFilter, total: pageviewsCount } })
-        dispatch({ type: "UPDATE_CHECKINS", payload: { period: dateFilter, total: checkinsCount, details: [] } }) // Replace details with actual data
-        dispatch({ type: "UPDATE_PRIVATE_FEEDBACK", payload: { period: dateFilter, total: reviewsCount, details: [] } }) // Replace details with actual data
-        dispatch({ type: "UPDATE_POSITIVE_COUNTS", payload: { period: dateFilter, total: positiveCountsTotal } })
-      } else {
-        console.error("Failed to fetch stats:", response.status, response.statusText)
-      }
-    } catch (err) {
-      console.error("Error fetching stats:", err)
-    }
-  }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await api.get(`/client-stats?dateFilter=${dateFilter}`)
+        if (response.status === 200) {
+          const { pageviewsCount, reviewsCount, checkinsCount, positiveCountsTotal } = response.data
+
+          // Dispatch actions to update the state
+          dispatch({ type: "UPDATE_PAGE_VISITS", payload: { period: dateFilter, total: pageviewsCount } })
+          dispatch({ type: "UPDATE_CHECKINS", payload: { period: dateFilter, total: checkinsCount, details: [] } }) // Replace details with actual data
+          dispatch({ type: "UPDATE_PRIVATE_FEEDBACK", payload: { period: dateFilter, total: reviewsCount, details: [] } }) // Replace details with actual data
+          dispatch({ type: "UPDATE_POSITIVE_COUNTS", payload: { period: dateFilter, total: positiveCountsTotal } })
+        } else {
+          console.error("Failed to fetch stats:", response.status, response.statusText)
+        }
+      } catch (err) {
+        console.error("Error fetching stats:", err)
+      }
+    }
     fetchStats()
   }, [dateFilter]) // re-fetch when dateFilter changes
 

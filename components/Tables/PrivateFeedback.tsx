@@ -7,6 +7,7 @@ const PrivateFeedback = () => {
   const { state, dispatch } = useDashboard()
   const [dateFilter, setDateFilter] = useState("today") // default filter
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchData = async () => {
       try {

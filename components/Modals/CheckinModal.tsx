@@ -71,6 +71,7 @@ export default function CheckinModal() {
     }
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Attach the event listener
     document.addEventListener("mousedown", handleClickOutside)
