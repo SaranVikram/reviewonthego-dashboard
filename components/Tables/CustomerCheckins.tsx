@@ -3,27 +3,27 @@ import React, { useState, useEffect } from "react"
 import { useDashboard } from "@/contexts/DashboardContext"
 import api from "@/utils/api"
 
-const customerCheckins = () => {
+const CustomerCheckins = () => {
   const { state, dispatch } = useDashboard()
   const [dateFilter, setDateFilter] = useState("today") // default filter
 
-  const fetchData = async () => {
-    try {
-      const response = await api.get(`/customer-checkin`, {
-        params: {
-          dateFilter,
-        },
-      })
-
-      if (response.status === 200) {
-        dispatch({ type: "UPDATE_CHECKINS", payload: { period: dateFilter, total: state.customerCheckins[dateFilter as keyof typeof state.customerCheckins].total, details: response.data } }) // Replace details with actual data
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    }
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`/customer-checkin`, {
+          params: {
+            dateFilter,
+          },
+        })
+
+        if (response.status === 200) {
+          dispatch({ type: "UPDATE_CHECKINS", payload: { period: dateFilter, total: state.customerCheckins[dateFilter as keyof typeof state.customerCheckins].total, details: response.data } }) // Replace details with actual data
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    }
+
     fetchData()
   }, [dateFilter])
 
@@ -99,4 +99,4 @@ const customerCheckins = () => {
   )
 }
 
-export default customerCheckins
+export default CustomerCheckins

@@ -7,23 +7,22 @@ const PrivateFeedback = () => {
   const { state, dispatch } = useDashboard()
   const [dateFilter, setDateFilter] = useState("today") // default filter
 
-  const fetchData = async () => {
-    try {
-      const response = await api.get(`/client-reviews`, {
-        params: {
-          dateFilter,
-        },
-      })
-
-      if (response.status === 200) {
-        dispatch({ type: "UPDATE_PRIVATE_FEEDBACK", payload: { period: dateFilter, total: state.privateFeedback[dateFilter as keyof typeof state.privateFeedback].total, details: response.data } }) // Replace details with actual data
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    }
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`/client-reviews`, {
+          params: {
+            dateFilter,
+          },
+        })
+
+        if (response.status === 200) {
+          dispatch({ type: "UPDATE_PRIVATE_FEEDBACK", payload: { period: dateFilter, total: state.privateFeedback[dateFilter as keyof typeof state.privateFeedback].total, details: response.data } }) // Replace details with actual data
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    }
     fetchData()
   }, [dateFilter])
   return (
