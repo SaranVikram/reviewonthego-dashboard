@@ -87,11 +87,12 @@ const LoginPage: React.FC = () => {
     }
   }
 
-  const handlePhoneRequest = async () => {
+  const handleLoginRequest = async () => {
     const mobile = `${countryCode}${phoneNumber}`
 
     // Verify the mobile number here, if needed
     if (!mobile || mobile.length < 10) {
+      console.log("Invalid number")
       dispatch({
         type: "SET_ALERT",
         payload: { type: "error", message: "Invalid mobile number" },
@@ -180,7 +181,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="w-[450px] rounded-lg border border-formstrokedark py-[30px] px-[100px] bg-white">
       <div className="w-[170px] mt-5 mb-6 mx-auto block" style={{ height: "fit-content" }}>
-        <Image src="/images/brand/brand-01.svg" alt="" title="" height="35" />
+        <Image src="/images/brand/brand-01.svg" alt="" title="" height="35" width="35" />
       </div>
       <h1 className="text-center text-black font-normal text-lg !leading-9 mb-5">Hello, who’s this?</h1>
       <form className="flex flex-col mx-auto my-0">
@@ -216,7 +217,7 @@ const LoginPage: React.FC = () => {
           </div>
         </div>
         {phoneRequest ? (
-          <button type="button" className="cursor-pointer text-[#fff] bg-primary border-primary text-sm py-2 px-4" onClick={handlePhoneRequest}>
+          <button type="button" className="cursor-pointer text-[#fff] bg-primary border-primary text-sm py-2 px-4" onClick={handleLoginRequest}>
             Login
           </button>
         ) : (

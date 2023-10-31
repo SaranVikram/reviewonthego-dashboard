@@ -35,7 +35,13 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
     </DashboardProvider>
   )
 
-  const renderPublicLayout = () => <div className={`relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden justify-center items-center`}>{children}</div>
+  const renderPublicLayout = () => (
+    <div className={`relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden justify-center items-center`}>
+      {" "}
+      <Alert />
+      {children}
+    </div>
+  )
 
   return (
     <html lang="en">

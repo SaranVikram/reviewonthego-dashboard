@@ -37,7 +37,7 @@ function Alert() {
       )}
 
       {alert.type === "error" && (
-        <div className="flex max-h-full max-w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[30%]  shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 p-2">
+        <div className="flex max-h-full max-w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[30%] px-7 py-8  shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
           <div className="w-full">
             <h5 className="mb-3 font-semibold text-[#B45454]">Error</h5>
             <ul>

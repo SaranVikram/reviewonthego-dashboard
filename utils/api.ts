@@ -1,10 +1,7 @@
 import axios from "axios"
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000/api"
-console.log("Base URL is:", baseURL) // This will log the URL being used
-
 const api = axios.create({
-  baseURL: baseURL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000/api",
   withCredentials: true,
 })
 
