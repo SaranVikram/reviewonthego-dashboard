@@ -51,7 +51,7 @@ const ChartFour: React.FC = () => {
   }, []) // Empty dependency array means this useEffect runs once when the component mounts
 
   const options: ApexOptions = {
-    colors: ["#3C50E0"],
+    colors: ["#007882"],
     chart: {
       fontFamily: "Satoshi, sans-serif",
       type: "bar",

@@ -116,9 +116,16 @@ const LoginPage: React.FC = () => {
       // Handle success case
     } catch (error: any) {
       console.log("Error:", error)
+
+      let message = "An unexpected error occurred"
+
+      if (error.response && error.response.data && error.response.data.message) {
+        message = error.response.data.message
+      }
+
       dispatch({
         type: "SET_ALERT",
-        payload: { type: "error", message: error.response.data.message },
+        payload: { type: "error", message: message },
       })
     }
   }
@@ -181,7 +188,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="w-[450px] rounded-lg border border-formstrokedark py-[30px] px-[100px] bg-white">
       <div className="w-[170px] mt-5 mb-6 mx-auto block" style={{ height: "fit-content" }}>
-        <Image src="/images/brand/brand-01.svg" alt="" title="" height="35" width="35" />
+        <Image src="/images/logo/reviewonthego-logo-dashboard.png" alt="Logo" width={300} height={150} />
       </div>
       <h1 className="text-center text-black font-normal text-lg !leading-9 mb-5">Hello, who’s this?</h1>
       <form className="flex flex-col mx-auto my-0">

@@ -51,11 +51,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   }, [sidebarExpanded])
 
   return (
-    <aside ref={sidebar} className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+    <aside ref={sidebar} className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-sidebar duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex  items-center justify-between gap-2 px-6 pt-5.5 lg:pt-6.5">
         <Link href="/">
-          <Image width={300} height={100} src={"/images/logo/reviewonthego-text-purple.png"} alt="Logo" />
+          <Image width={200} height={50} src={"/images/logo/dashboard_logo_white.png"} alt="Logo" />
         </Link>
 
         <button ref={trigger} onClick={() => setSidebarOpen(!sidebarOpen)} aria-controls="sidebar" aria-expanded={sidebarOpen} className="block lg:hidden">
