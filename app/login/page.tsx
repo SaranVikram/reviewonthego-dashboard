@@ -141,6 +141,7 @@ const LoginPage: React.FC = () => {
       // Handle successful OTP verification
       // For example, you might receive a token in the response data
       const token = response.data.token
+      console.log(response)
       if (response.data) {
         dispatch({
           type: "SET_ALERT",
