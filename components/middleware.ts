@@ -1,52 +1,35 @@
-import { NextResponse, NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
-
-// Function to verify JWT token
-const verifyToken = (token: string, secret: string) => {
-  try {
-    const decoded = jwt.verify(token, secret);
-    return { isValid: true, payload: decoded };
-  } catch (error) {
-    return { isValid: false, payload: null };
-  }
-};
+import { NextResponse, NextRequest } from "next/server"
 
 export function middleware(request: NextRequest) {
   // Define public routes and static assets
-  const publicRoutes = ["/login"];
-  const staticAssets = ["/_next/static/", "/favicon.ico"];
-  const imageExtensions = [".png", ".jpg", ".jpeg"];
+  const publicRoutes = ["/login"]
+  const staticAssets = ["/_next/static/", "/favicon.ico"]
+  const imageExtensions = [".png", ".jpg", ".jpeg"]
 
-  const path = request.nextUrl.pathname;
+  const path = request.nextUrl.pathname
 
   // Check if the path is a public route or a static asset
-  const isPublicPage =
-    publicRoutes.includes(path) ||
-    staticAssets.some((asset) => path.startsWith(asset)) ||
-    imageExtensions.some((ext) => path.endsWith(ext));
+  const isPublicPage = publicRoutes.includes(path) || staticAssets.some((asset) => path.startsWith(asset)) || imageExtensions.some((ext) => path.endsWith(ext))
 
   // If it's a public page or a static asset, proceed without any checks
   if (isPublicPage) {
-    return NextResponse.next();
+    return NextResponse.next()
   }
 
   // Get the token from cookies
-  const token = request.cookies.get("token")?.value || "";
+  const token = request.cookies.get("token")?.value || ""
 
   // If token doesn't exist, redirect to login
   if (!token) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
+    return NextResponse.redirect(new URL("/login", request.nextUrl))
   }
 
-  // Verify the token
-  const { isValid } = verifyToken(token, process.env.JWT_SECRET!);
-
-  if (isValid) {
+  if (token) {
     // If token is valid, proceed to the requested page
-    return NextResponse.next();
+    return NextResponse.next()
   } else {
     // If token verification fails, redirect to login
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
+    return NextResponse.redirect(new URL("/login", request.nextUrl))
   }
 }
 
@@ -55,4 +38,4 @@ export const config = {
     // This regex will match all routes except the ones specified
     "/((?!login|_next/static|_next/image|favicon.ico).*)",
   ],
-};
+}
