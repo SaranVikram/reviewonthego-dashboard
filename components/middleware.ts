@@ -18,6 +18,7 @@ export function middleware(request: NextRequest) {
 
   // Get the token from cookies
   const token = request.cookies.get("token")?.value || ""
+  console.log(token)
 
   // If token doesn't exist, redirect to login
   if (!token) {
