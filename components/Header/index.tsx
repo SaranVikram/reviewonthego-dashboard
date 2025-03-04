@@ -33,16 +33,18 @@ const Header = (props: { sidebarOpen: string | boolean | undefined; setSidebarOp
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
-          <Link className="block flex-shrink-0 lg:hidden" href="/">
-            <Image width={32} height={32} src={"/images/logo/logo-icon.svg"} alt="Logo" />
-          </Link>
-        </div>
-
-        <div className="">
-          <button onClick={() => setShowModal(true)} className="inline-flex items-center justify-center bg-primary py-1 px-2 text-sm md:py-2 md:px-4 md:text-base text-center font-medium text-white hover:bg-opacity-90 lg:py-4 lg:px-8 xl:px-10">
+          <div className="">
+          <button onClick={() => setShowModal(true)} className="inline-flex items-center justify-center bg-primary  text-sm py-2 px-4 md:text-base text-center font-medium text-white hover:bg-opacity-90 lg:py-4 lg:px-8 xl:px-10">
             Checkin Request
           </button>
         </div>
+        </div>
+        <div className="hidden lg:block">
+          <button onClick={() => setShowModal(true)} className="inline-flex items-center justify-center bg-primary  text-sm py-2 px-4 md:text-base text-center font-medium text-white hover:bg-opacity-90 lg:py-4 lg:px-8 xl:px-10">
+            Checkin Request
+          </button>
+        </div>
+        
 
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
